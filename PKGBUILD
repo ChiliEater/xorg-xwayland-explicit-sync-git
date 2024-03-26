@@ -9,9 +9,9 @@ groups=('xorg')
 url="https://xorg.freedesktop.org"
 pkgdesc="Run X clients under Wayland with explicit sync patch"
 depends=('nettle' 'libegl' 'libepoxy' 'systemd-libs' 'libxfont2'
-         'pixman' 'xorg-server-common' 'libxcvt' 'xorgproto-explicit-sync-git')
+         'pixman' 'xorg-server-common' 'libxcvt' 'xorgproto-git')
 makedepends=('meson' 'git'
-             'xorgproto-explicit-sync-git'
+             'xorgproto-git'
              'xtrans'
              'pixman' 'libxkbfile' 'libxfont2' 'dbus'
              'xorg-font-util'
