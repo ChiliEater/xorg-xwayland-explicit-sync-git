@@ -1,7 +1,7 @@
 # Maintainer: martiuk <me at martinke dot mp>
 
 pkgname=xorg-xwayland-explicit-sync-git
-pkgver=23.2.4.r159.g2ef0f1116
+pkgver=23.2.4.r387.ga57b44948
 pkgrel=1
 arch=('x86_64')
 license=('custom')
@@ -9,21 +9,20 @@ groups=('xorg')
 url="https://xorg.freedesktop.org"
 pkgdesc="Run X clients under Wayland with explicit sync patch"
 depends=('nettle' 'libegl' 'libepoxy' 'systemd-libs' 'libxfont2'
-         'pixman' 'xorg-server-common' 'libxcvt' 'xorgproto-git')
+         'pixman' 'xorg-server-common' 'libxcvt')
 makedepends=('meson' 'git'
-             'xorgproto-git'
+             'xorgproto'
              'xtrans'
-             'pixman' 'libxkbfile' 'libxfont2' 'dbus'
+             'libxkbfile' 'dbus'
              'xorg-font-util'
              'wayland'
              'wayland-protocols'
-             'libdrm' 'libepoxy'
+             'libdrm'
              'systemd'
-             'egl-wayland'
 )
 source=(
   "xserver::git+https://gitlab.freedesktop.org/xorg/xserver.git"
-  "https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/967.patch"
+  "explicit-sync.patch::https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/967.patch"
 )
 b2sums=('SKIP'
         'SKIP')
@@ -41,7 +40,7 @@ pkgver() {
 
 prepare() {
   cd xserver
-  patch -Np1 -i "${srcdir}/967.patch"
+  patch -Np1 -i "${srcdir}/explicit-sync.patch"
 }
 
 build() {
@@ -82,3 +81,4 @@ package() {
   # license
   install -m644 -Dt "${pkgdir}/usr/share/licenses/${pkgname}" xserver/COPYING
 }
+
